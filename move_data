@@ -1,0 +1,30 @@
+import os
+import os.path
+import shutil
+def move_files(path):
+    group = "G:/UCF101/sequences/data"
+    src = "G:/UCF101/sequences/UCF101"
+    for path in [x.strip().split() for x in open(path)]:
+        print(path)
+        path = "".join(path)
+        filename = path.split(".")[0]
+        srcl = os.path.join(src, path)
+        dst = os.path.join(group, filename)
+        os.makedirs(os.path.join(group, filename))
+        shutil.copy(srcl, dst)
+        print(filename)
+    print("Done.")
+
+def main():
+    """
+    dir = "G:/UCF101/sequences/UCF101"
+    f = open("G:/UCF101/sequences/dir.txt", "a")
+    for root, dirs, files in os.walk(dir):
+       for file in files:
+            f.writelines(os.path.join(file) + "\n")
+    """
+    path = "G:/UCF101/sequences/dir.txt"
+    move_files(path)
+
+if __name__ == '__main__':
+    main()
